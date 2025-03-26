@@ -1,0 +1,28 @@
+{
+    "name": "Audio Locker",
+    "short_name": "AudioLocker",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#fdfdfd",
+    "theme_color": "#dbdbdb",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "./images/icons/telefone.png",
+        "type": "image/png", "sizes": "225x225"
+      }
+    ],
+    "screenshots": [
+    {
+      "src": "./images/screenshots/desktop.png",
+      "sizes": "1280x760",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "./images/screenshots/mobile.png",
+      "sizes": "418x760",
+      "type": "image/png"
+    }
+  ]
+  }
