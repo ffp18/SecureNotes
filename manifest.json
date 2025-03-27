@@ -8,21 +8,9 @@
     "orientation": "portrait-primary",
     "icons": [
       {
-        "src": "./images/icons/telefone.png",
-        "type": "image/png", "sizes": "225x225"
+        "src": "./images/icon/icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
       }
-    ],
-    "screenshots": [
-    {
-      "src": "./images/screenshots/desktop.png",
-      "sizes": "1280x760",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "./images/screenshots/mobile.png",
-      "sizes": "418x760",
-      "type": "image/png"
-    }
-  ]
+    ]
   }
