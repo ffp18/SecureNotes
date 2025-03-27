@@ -8,6 +8,21 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>NotaLocker</h1>
+    <main>
+      <input id="btn-home" type="button" value="home" data-template="home" />
+      <div id="container"></div>
+    </main>
+
+    <template id="home">
+      <h1>NotaLocker</h1>
+      <div class="div-registros">
+        <table class="tabela-notas"></table>
+        <input
+          class="btn-adicionar-nota"
+          type="button"
+          value="Adicionar nota"
+        />
+      </div>
+    </template>
   </body>
 </html>
