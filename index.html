@@ -7,24 +7,85 @@
     <link rel="manifest" href="manifest.json" />
     <link rel="icon" href="/images/icon/icon.png" />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
+    <script src="script.js" type="module" defer></script>
   </head>
   <body>
     <main>
-      <input id="btn-home" type="button" value="home" data-template="home" />
       <div id="container"></div>
     </main>
 
     <template id="home">
-      <h1>NotaLocker</h1>
-      <div class="div-registros">
-        <table class="tabela-notas"></table>
+      <link rel="stylesheet" href="style.css" />
+      <nav>
+        <slot name="titulo"></slot>
+      </nav>
+      <div name="conteudo" class="div-registros">
+        <table id="tabela-notas">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nota</th>
+            </tr>
+          </thead>
+        </table>
         <input
-          class="btn-adicionar-nota"
+          id="btn-incluir"
+          class="btn"
           type="button"
-          value="Adicionar nota"
+          value="Incluir Nota"
+          data-navegar_para="pagina-inclusao"
         />
       </div>
+    </template>
+
+    <template id="inclusao">
+      <link rel="stylesheet" href="style.css" />
+      <nav>
+        <button id="btn-voltar" data-navegar_para="pagina-home">Voltar</button>
+        <!-- <h4>Nova Nota</h4> -->
+        <slot name="titulo"></slot>
+      </nav>
+      <div id="div-inclusao">
+        <input
+          id="descricao-nota"
+          type="text"
+          placeholder="descrição da nota"
+        />
+        <textarea id="txt-nota" cols="30" rows="10"></textarea>
+        <div class="controle-inclusao">
+          <input
+            id="btn-audio"
+            class="btn"
+            type="button"
+            value="Gravar por voz"
+          />
+          <input
+            id="btn-finalizar"
+            class="btn"
+            type="button"
+            value="Finalizar"
+          />
+        </div>
+      </div>
+    </template>
+
+    <template id="navbar">
+      <nav name="navbar">
+        <slot name="btnVoltar"></slot>
+        <slot name="tituloNav"></slot>
+      </nav>
+    </template>
+
+    <template id="footer">
+      <footer name="footer">
+        <slot></slot>
+      </footer>
+    </template>
+
+    <template id="template-base">
+      <slot name="navbar"></slot>
+      <slot name="conteudo"></slot>
+      <slot name="footer"></slot>
     </template>
   </body>
 </html>

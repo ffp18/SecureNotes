@@ -3,18 +3,31 @@ main {
     justify-items: center;
 }
 
-/* .div-registros{
-    width: 50%;
-    height: 500px;
-} */
-
-/* .tabela-notas{
+.div-registros{
+    max-width: 800px;
     width: 100%;
-    height: 450px;
+    margin:auto;
+    display: grid;
+}
+
+#tabela-notas{
+    width: 100%;
     border: 1px solid;
-} */
+}
 
-/* .btn-adicionar-nota{
+
+#container {
     width: 100%;
-    height: 50px;
-} */
+}
+
+#div-inclusao{
+    display: inline-grid;
+}
+
+tr:hover {
+    background-color: #ededed;
+}
+
+tr:active {
+    background-color: #d9d9d9;
+}
