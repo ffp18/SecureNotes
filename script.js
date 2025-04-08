@@ -8,7 +8,7 @@ function navegarPara(pagina, titulo = undefined) {
   if (titulo) {
     const tituloh4 = document.createElement("h4");
     tituloh4.innerHTML = titulo;
-    tituloh4.slot = "titulo";
+    tituloh4.slot = "tituloNav";
     paginaTemplate.appendChild(tituloh4);
   }
 
@@ -17,9 +17,6 @@ function navegarPara(pagina, titulo = undefined) {
 }
 
 function registrarNota(codigoNota, descricao, texto) {
-  // console.log(
-  //   `codigoNota: ${codigoNota}, descricao:${descricao}, texto: ${texto}`
-  // );
   let notas = JSON.parse(localStorage.getItem("notas"));
 
   if (notas) {
@@ -48,19 +45,19 @@ function notaSelecionada(codigo) {
   const notaSelecionada = notas.find((e) => e.codigo == codigo);
 
   if (notaSelecionada) {
-    const templateAlteracao = document.createElement("pagina-inclusao");
+    const templateBase = construirTemplateBase("Alterar Nota", "pagina-home");
+
+    const templateAlteracao = document.createElement("componente-inclusao");
+    templateAlteracao.slot = "conteudo";
 
     templateAlteracao.setAttribute("codigo", notaSelecionada.codigo);
     templateAlteracao.setAttribute("descricao", notaSelecionada.descricao);
     templateAlteracao.setAttribute("nota", notaSelecionada.nota);
 
-    const titulo = document.createElement("h4");
-    titulo.innerHTML = "Alterar Nota";
-    titulo.slot = "titulo";
-    templateAlteracao.appendChild(titulo);
+    templateBase.appendChild(templateAlteracao);
 
     container.innerHTML = "";
-    container.appendChild(templateAlteracao);
+    container.appendChild(templateBase);
   } else {
     navegarPara("pagina-home");
   }
@@ -71,17 +68,17 @@ function gravarVoz() {
 }
 
 function construirTemplateBase(titulo, voltarPara) {
-  const navbar = document.createElement("componente-navbar");
-
   const h3 = document.createElement("h3");
-  h3.slot = "tituloNav";
+  h3.slot = h3.id = "tituloNav";
   h3.innerHTML = titulo;
 
+  const navbar = document.createElement("componente-navbar");
+  navbar.slot = "navbar";
   navbar.appendChild(h3);
 
   if (voltarPara) {
     const btnVoltar = document.createElement("button");
-    btnVoltar.slot = "btnVoltar";
+    btnVoltar.slot = btnVoltar.id = "btnVoltar";
     btnVoltar.innerHTML = "Voltar";
     btnVoltar.dataset.navegar_para = voltarPara;
     btnVoltar.addEventListener("click", (e) =>
@@ -92,6 +89,8 @@ function construirTemplateBase(titulo, voltarPara) {
   }
 
   const footer = document.createElement("componente-footer");
+  footer.slot = "footer";
+  footer.innerHTML = "<h1>footer</h1>";
 
   const paginaBase = document.createElement("pagina-base");
   paginaBase.appendChild(navbar);
@@ -100,12 +99,25 @@ function construirTemplateBase(titulo, voltarPara) {
   return paginaBase;
 }
 
+class HomePage extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    const paginaBase = construirTemplateBase("Secure Notes", undefined);
+
+    const conteudo = document.createElement("componente-home");
+    conteudo.slot = "conteudo";
+
+    paginaBase.appendChild(conteudo);
+
+    this.shadowRoot.appendChild(paginaBase);
+  }
+}
+
 class Home extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    //const paginaBase = construirTemplateBase("Secure Notes", undefined);
-    //console.log(paginaBase);
 
     const notas = JSON.parse(localStorage.getItem("notas")) || [];
     const tbody = document.createElement("tbody");
@@ -133,12 +145,26 @@ class Home extends HTMLElement {
     conteudo
       .querySelector("#btn-incluir")
       .addEventListener("click", (e) =>
-        navegarPara(e.target.dataset.navegar_para, "Nova Nota")
+        navegarPara(e.target.dataset.navegar_para)
       );
 
-    //paginaBase.appendChild(conteudo);
-
     this.shadowRoot.appendChild(conteudo);
+  }
+}
+
+class InclusaoPage extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+
+    const paginaBase = construirTemplateBase("Inclusao", "pagina-home");
+
+    const conteudo = document.createElement("componente-inclusao");
+    conteudo.slot = "conteudo";
+
+    paginaBase.appendChild(conteudo);
+
+    this.shadowRoot.appendChild(paginaBase);
   }
 }
 
@@ -154,12 +180,6 @@ class Inclusao extends HTMLElement {
     this.codigoNota = this.getAttribute("codigo");
     this.InputDescricaoNota = template.querySelector("#descricao-nota");
     this.InputConteudoNota = template.querySelector("#txt-nota");
-
-    template
-      .querySelector("#btn-voltar")
-      .addEventListener("click", (e) =>
-        navegarPara(e.target.dataset.navegar_para)
-      );
 
     template
       .querySelector("#btn-finalizar")
@@ -200,7 +220,7 @@ class NavBar extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    const template = document.querySelector("#footer").content.cloneNode(true);
+    const template = document.querySelector("#navbar").content.cloneNode(true);
 
     this.shadowRoot.appendChild(template);
   }
@@ -230,8 +250,10 @@ class PaginaBase extends HTMLElement {
   }
 }
 
-customElements.define("pagina-home", Home);
-customElements.define("pagina-inclusao", Inclusao);
+customElements.define("componente-home", Home);
+customElements.define("pagina-home", HomePage);
+customElements.define("componente-inclusao", Inclusao);
+customElements.define("pagina-inclusao", InclusaoPage);
 customElements.define("componente-navbar", NavBar);
 customElements.define("componente-footer", Footer);
 customElements.define("pagina-base", PaginaBase);

@@ -15,10 +15,7 @@
     </main>
 
     <template id="home">
-      <link rel="stylesheet" href="style.css" />
-      <nav>
-        <slot name="titulo"></slot>
-      </nav>
+      <link rel="stylesheet" href="./styles/style.css" />
       <div name="conteudo" class="div-registros">
         <table id="tabela-notas">
           <thead>
@@ -39,12 +36,7 @@
     </template>
 
     <template id="inclusao">
-      <link rel="stylesheet" href="style.css" />
-      <nav>
-        <button id="btn-voltar" data-navegar_para="pagina-home">Voltar</button>
-        <!-- <h4>Nova Nota</h4> -->
-        <slot name="titulo"></slot>
-      </nav>
+      <link rel="stylesheet" href="./styles/inclusaoPage.css" />
       <div id="div-inclusao">
         <input
           id="descricao-nota"
@@ -70,7 +62,8 @@
     </template>
 
     <template id="navbar">
-      <nav name="navbar">
+      <link rel="stylesheet" href="./styles/style.css" />
+      <nav id="navbar" name="navbar">
         <slot name="btnVoltar"></slot>
         <slot name="tituloNav"></slot>
       </nav>
