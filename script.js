@@ -161,10 +161,10 @@ class InclusaoPage extends HTMLElement {
     const conteudo = document.createElement("componente-inclusao");
     conteudo.slot = "conteudo";
 
-    const btnGravarVoz = document.createElement('gravador-voz');
-    btnGravarVoz.slot = "btnGravarVoz";
+    // const btnGravarVoz = document.createElement('gravador-voz');
+    // btnGravarVoz.slot = "btnGravarVoz";
 
-    conteudo.appendChild(btnGravarVoz);
+    // conteudo.appendChild(btnGravarVoz);
 
     paginaBase.appendChild(conteudo);
 
@@ -274,58 +274,56 @@ class PaginaBase extends HTMLElement {
   }
 }
 
-class GravadorVoz extends HTMLElement {
-  constructor() {
-      super();
-      this.attachShadow({ mode: "open" });
+// class GravadorVoz extends HTMLElement {
+//   constructor() {
+//       super();
+//       this.attachShadow({ mode: "open" });
 
-      this.button = document.createElement("button");
-      this.button.textContent = "Gravar por voz";
-      
-      this.output = document.createElement("p");
+//       this.button = document.createElement("button");
+//       this.button.textContent = "Gravar por voz";
 
-      this.shadowRoot.append(this.button, this.output);
+//       this.shadowRoot.appendChild(this.button);
 
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-          this.output.textContent = "Seu navegador não suporta reconhecimento de voz.";
-          this.button.disabled = true;
-          return;
-      }
+//       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+//       if (!SpeechRecognition) {
+//           this.output.textContent = "Seu navegador não suporta reconhecimento de voz.";
+//           this.button.disabled = true;
+//           return;
+//       }
 
-      this.recognition = new SpeechRecognition();
-      this.recognition.lang = "pt-BR";
-      this.recognition.continuous = false;
-      this.recognition.interimResults = false;
+//       this.recognition = new SpeechRecognition();
+//       this.recognition.lang = "pt-BR";
+//       this.recognition.continuous = false;
+//       this.recognition.interimResults = false;
 
-      this.recognition.onstart = () => {
-          this.button.textContent = "Ouvindo...";
-      };
+//       this.recognition.onstart = () => {
+//           this.button.textContent = "Ouvindo...";
+//       };
 
-      this.recognition.onresult = (event) => {
-          const transcript = event.results[0][0].transcript;
-          this.output.textContent = `Você disse: ${transcript}`;
-      };
+//       this.recognition.onresult = (event) => {
+//           const transcript = event.results[0][0].transcript;
+//           this.output.textContent = `Você disse: ${transcript}`;
+//       };
 
-      this.recognition.onerror = (event) => {
-          this.output.textContent = `Erro: ${event.error}`;
-      };
+//       this.recognition.onerror = (event) => {
+//           this.output.textContent = `Erro: ${event.error}`;
+//       };
 
-      this.recognition.onend = () => {
-          this.button.textContent = "Iniciar Reconhecimento de Voz";
-      };
+//       this.recognition.onend = () => {
+//           this.button.textContent = "Iniciar Reconhecimento de Voz";
+//       };
 
-      this.button.addEventListener("click", () => {
-        navigator.mediaDevices.getUserMedia({ audio: true })
-            .then(() => this.recognition.start())
-            .catch((err) => {
-                this.output.textContent = `Permissão negada ou erro: ${err.message}`;
-            });
-    });
-  }
-}
+//       this.button.addEventListener("click", () => {
+//         navigator.mediaDevices.getUserMedia({ audio: true })
+//             .then(() => this.recognition.start())
+//             .catch((err) => {
+//                 this.output.textContent = `Permissão negada ou erro: ${err.message}`;
+//             });
+//     });
+//   }
+// }
 
-customElements.define("gravador-voz", GravadorVoz);
+// customElements.define("gravador-voz", GravadorVoz);
 customElements.define("componente-home", Home);
 customElements.define("pagina-home", HomePage);
 customElements.define("componente-inclusao", Inclusao);
