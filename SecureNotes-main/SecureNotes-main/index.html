@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureNotes</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="/images/icon/icon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./styles/theme.css" />
+    <script src="script.js" type="module" defer></script>
+  </head>
+  <body>
+    <main class="main-container">
+      <div id="container" class="content-container"></div>
+    </main>
+
+    <template id="home">
+      <link rel="stylesheet" href="./styles/style.css" />
+      <div name="conteudo" class="div-registros card">
+        <table id="tabela-notas" class="table">
+          <thead>
+            <tr>
+              <th>Categoria</th>
+              <th>Nota</th>
+            </tr>
+          </thead>
+        </table>
+        <input
+          id="btn-incluir"
+          class="btn primary-btn"
+          type="button"
+          value="Incluir Nota"
+          data-navegar_para="pagina-inclusao"
+        />
+      </div>
+    </template>
+
+    <template id="inclusao">
+      <link rel="stylesheet" href="./styles/inclusaoPage.css" />
+      <div id="div-inclusao" class="form-container">
+        <input
+          id="descricao-nota"
+          class="input-field"
+          type="text"
+          placeholder="descrição da nota"
+        />
+        <textarea
+          id="txt-nota"
+          class="textarea-field"
+          cols="30"
+          rows="10"
+          placeholder="Escreva sua nota aqui..."
+        ></textarea>
+        <div class="controle-inclusao">
+          <input
+            id="btn-audio"
+            class="btn secondary-btn"
+            type="button"
+            value="Gravar por voz"
+          />
+          <input
+            id="btn-finalizar"
+            class="btn primary-btn"
+            type="button"
+            value="Finalizar"
+          />
+        </div>
+      </div>
+    </template>
+
+    <template id="navbar">
+      <link rel="stylesheet" href="./styles/style.css" />
+      <nav id="navbar" name="navbar" class="navbar">
+        <slot name="btnVoltar"></slot>
+        <slot name="tituloNav"></slot>
+      </nav>
+    </template>
+
+    <template id="footer">
+      <footer name="footer" class="footer">
+        <slot></slot>
+      </footer>
+    </template>
+
+    <template id="template-base">
+      <div class="template-base">
+        <slot name="navbar"></slot>
+        <slot name="conteudo"></slot>
+        <slot name="footer"></slot>
+      </div>
+    </template>
+  </body>
+</html>

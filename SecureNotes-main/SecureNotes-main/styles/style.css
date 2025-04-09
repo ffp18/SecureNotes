@@ -1,0 +1,165 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* centraliza verticalmente */
+    padding: 2rem;
+    background-color: #0f172a;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: #f1f5f9;
+  }
+  
+
+  .titulo{
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #6366f1, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+  }
+  
+  
+  .div-registros {
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+    display: grid;
+    gap: 1.5rem;
+    background-color: #1e293b;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+  
+  #tabela-notas,
+  .tabela-notas {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #0f172a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  #tabela-notas th,
+  #tabela-notas td,
+  .tabela-notas th,
+  .tabela-notas td {
+    padding: 16px;
+    text-align: center;
+    border-bottom: 1px solid #334155;
+    color: #e2e8f0;
+    font-size: 1rem;
+  }
+  
+  #tabela-notas th {
+    background-color: #1e293b;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  tr:hover {
+    background-color: #334155;
+  }
+  
+  tr:active {
+    background-color: #475569;
+  }
+  
+  input[type="button"],
+  .btn,
+  .btn-adicionar-nota {
+    background-color: #6366f1;
+    color: #fff;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  input[type="button"]:hover,
+  .btn:hover,
+  .btn-adicionar-nota:hover {
+    background-color: #4f46e5;
+  }
+  
+  .primary-btn {
+    background-color: #22c55e;
+  }
+  
+  .primary-btn:hover {
+    background-color: #16a34a;
+  }
+  
+  .secondary-btn {
+    background-color: #3b82f6;
+  }
+  
+  .secondary-btn:hover {
+    background-color: #2563eb;
+  }
+  
+  .input-field,
+  .textarea-field {
+    background-color: #1e293b;
+    color: #f1f5f9;
+    border: 1px solid #334155;
+    padding: 14px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border 0.2s ease;
+  }
+  
+  .input-field:focus,
+  .textarea-field:focus {
+    border: 1px solid #6366f1;
+    outline: none;
+  }
+  
+  .input-field::placeholder,
+  .textarea-field::placeholder {
+    color: #94a3b8;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .card {
+    background-color: #1e293b;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  }
+  
+  .controle-inclusao {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+
