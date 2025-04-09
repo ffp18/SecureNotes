@@ -331,3 +331,14 @@ customElements.define("pagina-inclusao", InclusaoPage);
 customElements.define("componente-navbar", NavBar);
 customElements.define("componente-footer", Footer);
 customElements.define("pagina-base", PaginaBase);
+
+// registrar o serviceWorker
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("./serviceWorker.js")
+      .then((res) => console.log("service worker registrado"))
+      .catch((err) => console.log("service worker não registrado", err));
+  });
+}
