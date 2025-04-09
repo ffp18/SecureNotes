@@ -222,9 +222,30 @@ class NavBar extends HTMLElement {
 
     const template = document.querySelector("#navbar").content.cloneNode(true);
 
+    const style = document.createElement("style");
+    style.textContent = `
+      ::slotted(#tituloNav) {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #333;
+        margin:2.5rem 0;
+        text-align: center;
+        padding: 10px;
+        background-color:rgba(4, 123, 242, 0.33);
+        border-radius: 5px;
+      }
+      ::slotted(#btnVoltar) {
+        background-color: #007bff;
+        margin: 10px 0;
+        text-align: center;
+      }
+    `;
+
+    this.shadowRoot.appendChild(style);
     this.shadowRoot.appendChild(template);
   }
 }
+
 
 class Footer extends HTMLElement {
   constructor() {
