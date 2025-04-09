@@ -21,7 +21,7 @@
         <table id="tabela-notas" class="table">
           <thead>
             <tr>
-              <th>Categoria</th>
+              <th>#</th>
               <th>Nota</th>
             </tr>
           </thead>
@@ -53,12 +53,13 @@
           placeholder="Escreva sua nota aqui..."
         ></textarea>
         <div class="controle-inclusao">
-          <input
+          <!-- <input
             id="btn-audio"
             class="btn secondary-btn"
             type="button"
             value="Gravar por voz"
-          />
+          /> -->
+          <slot name="btnGravarVoz"></slot>
           <input
             id="btn-finalizar"
             class="btn primary-btn"
